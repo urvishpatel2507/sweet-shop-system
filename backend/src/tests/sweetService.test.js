@@ -5,10 +5,12 @@ import { SweetService } from "../services/sweetService";
 describe("SweetService - Add", () => {
   let service;
 
+  // Initialize a new SweetService instance before each test
   beforeEach(() => {
     service = new SweetService();
   });
 
+  // Test to check if we can add a sweet with required fields is fill ir not
   it("should add a sweet with required fields", () => {
     const sweetData = {
       name: "Kaju Katti",
