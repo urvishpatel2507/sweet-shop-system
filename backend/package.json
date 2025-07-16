@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Urvish Patel",
+  "license": "ISC",
+  "description": "Sweet Shop Management System (Incubyte Task)",
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "supertest": "^7.1.3"
+  }
+}
