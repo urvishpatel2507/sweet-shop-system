@@ -3,6 +3,7 @@ import { SweetService } from "./services/sweetService.js";
 import cors from "cors";
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(
   cors({
@@ -137,7 +138,6 @@ app.post("/api/sweets/:id/restock", (req, res) => {
   res.json(sweet);
 });
 
-const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
