@@ -1,5 +1,4 @@
 # Sweet Shop Management System
-# 🍭 Sweet Shop Management System
 
 <div align="center">
   <img src="https://img.shields.io/badge/React-18.2.0-blue?logo=react" />
