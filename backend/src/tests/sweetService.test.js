@@ -119,7 +119,7 @@ describe("SweetService", () => {
 
     it("should search by price range", () => {
       const results = service.searchSweets({ minPrice: 20, maxPrice: 40 });
-      expect(results).toHaveLength(2); // Kaju Katti (50) and Gajar Halwa (30)
+      expect(results).toHaveLength(1); // Gajar Halwa (30)
     });
   });
 
