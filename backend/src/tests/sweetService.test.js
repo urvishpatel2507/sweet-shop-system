@@ -153,4 +153,23 @@ describe("SweetService", () => {
       expect(sorted[2].price).toBe(10);
     });
   });
+
+
+  describe("Purchase Sweet", () => {
+    it("should reduce quantity when purchased", () => {
+      const purchased = service.purchaseSweet(testSweet.id, 5);
+      expect(purchased.quantity).toBe(15);
+      expect(service.getSweetById(testSweet.id).quantity).toBe(15);
+    });
+
+    it("should throw error for insufficient stock", () => {
+      expect(() => service.purchaseSweet(testSweet.id, 25)).toThrow("Insufficient stock");
+    });
+
+    it("should throw error for non-existent sweet", () => {
+      expect(() => service.purchaseSweet(9999, 1)).toThrow("Sweet not found");
+    });
+  });
+
+  
 });
