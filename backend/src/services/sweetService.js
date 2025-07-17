@@ -65,4 +65,20 @@ export class SweetService {
       return nameMatch && categoryMatch && minPriceMatch && maxPriceMatch;
     });
   }
+
+  //sorted sweet testing
+  sortSweets(sortBy, sortOrder = "asc") {
+    const sorted = [...this.sweets];
+
+    sorted.sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a[sortBy] > b[sortBy] ? 1 : -1;
+      } else {
+        return a[sortBy] < b[sortBy] ? 1 : -1;
+      }
+    });
+    return sorted;
+  }
+
+  
 }

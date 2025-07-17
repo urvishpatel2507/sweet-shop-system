@@ -123,5 +123,34 @@ describe("SweetService", () => {
     });
   });
 
+  describe("Sort Sweets", () => {
+    beforeEach(() => {
+      service.addSweet({
+        name: "Gajar Halwa",
+        category: "Vegetable-Based",
+        price: 30,
+        quantity: 15,
+      });
+      service.addSweet({
+        name: "Gulab Jamun",
+        category: "Milk-Based",
+        price: 10,
+        quantity: 50,
+      });
+    });
 
+    it("should sort by name ascending", () => {
+      const sorted = service.sortSweets("name");
+      expect(sorted[0].name).toBe("Gajar Halwa");
+      expect(sorted[1].name).toBe("Gulab Jamun");
+      expect(sorted[2].name).toBe("Kaju Katti");
+    });
+
+    it("should sort by price descending", () => {
+      const sorted = service.sortSweets("price", "desc");
+      expect(sorted[0].price).toBe(50);
+      expect(sorted[1].price).toBe(30);
+      expect(sorted[2].price).toBe(10);
+    });
+  });
 });
