@@ -18,6 +18,12 @@
 - **Responsive Material-UI Design**
 - **TDD Implemented Backend**
 
+<div align="center">
+  <img src="frontend/public/Test_cases_pass.png" alt="Test Cases Passed" width="600"/>
+</div>
+
+
+
 ## 🚀 Quick Start
 
 ### Prerequisites
