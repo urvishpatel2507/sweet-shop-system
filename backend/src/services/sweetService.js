@@ -49,4 +49,20 @@ export class SweetService {
 
     return this.sweets[sweetIndex];
   }
+
+  //update sweet searching testing
+  searchSweets({ name, category, minPrice, maxPrice }) {
+    return this.sweets.filter((sweet) => {
+      const nameMatch = name
+        ? sweet.name.toLowerCase().includes(name.toLowerCase())
+        : true;
+      const categoryMatch = category
+        ? sweet.category.toLowerCase() === category.toLowerCase()
+        : true;
+      const minPriceMatch = minPrice ? sweet.price >= minPrice : true;
+      const maxPriceMatch = maxPrice ? sweet.price <= maxPrice : true;
+
+      return nameMatch && categoryMatch && minPriceMatch && maxPriceMatch;
+    });
+  }
 }

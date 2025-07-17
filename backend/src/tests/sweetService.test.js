@@ -74,7 +74,7 @@ describe("SweetService", () => {
     });
   });
 
-  //update sweet
+  //update sweet testing
   describe("Update Sweet", () => {
     it("should update an existing sweet", () => {
       const updated = service.updateSweet(testSweet.id, { price: 60 });
@@ -87,4 +87,41 @@ describe("SweetService", () => {
       expect(result).toBeNull();
     });
   });
+
+  //search sweet testing
+  describe("Search Sweets", () => {
+    beforeEach(() => {
+      service.addSweet({
+        name: "Gajar Halwa",
+        category: "Vegetable-Based",
+        price: 30,
+        quantity: 15,
+      });
+      service.addSweet({
+        name: "Gulab Jamun",
+        category: "Milk-Based",
+        price: 10,
+        quantity: 50,
+      });
+    });
+
+    it("should search by name", () => {
+      const results = service.searchSweets({ name: "kaju" });
+      expect(results).toHaveLength(1);
+      expect(results[0].name).toBe("Kaju Katti");
+    });
+
+    it("should search by category", () => {
+      const results = service.searchSweets({ category: "Milk-Based" });
+      expect(results).toHaveLength(1);
+      expect(results[0].name).toBe("Gulab Jamun");
+    });
+
+    it("should search by price range", () => {
+      const results = service.searchSweets({ minPrice: 20, maxPrice: 40 });
+      expect(results).toHaveLength(2); // Kaju Katti (50) and Gajar Halwa (30)
+    });
+  });
+
+
 });
