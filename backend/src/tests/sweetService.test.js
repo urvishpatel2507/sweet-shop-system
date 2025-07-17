@@ -123,6 +123,7 @@ describe("SweetService", () => {
     });
   });
 
+  //sort sweet testing
   describe("Sort Sweets", () => {
     beforeEach(() => {
       service.addSweet({
@@ -154,7 +155,7 @@ describe("SweetService", () => {
     });
   });
 
-
+  //purchase sweet testing
   describe("Purchase Sweet", () => {
     it("should reduce quantity when purchased", () => {
       const purchased = service.purchaseSweet(testSweet.id, 5);
@@ -171,5 +172,17 @@ describe("SweetService", () => {
     });
   });
 
+  //restock sweet testing
+   describe("Restock Sweet", () => {
+    it("should increase quantity when restocked", () => {
+      const restocked = service.restockSweet(testSweet.id, 10);
+      expect(restocked.quantity).toBe(30);
+      expect(service.getSweetById(testSweet.id).quantity).toBe(30);
+    });
+
+    it("should throw error for non-existent sweet", () => {
+      expect(() => service.restockSweet(9999, 10)).toThrow("Sweet not found");
+    });
+  });
   
 });
