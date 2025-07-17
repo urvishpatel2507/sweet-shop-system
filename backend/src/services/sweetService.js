@@ -1,16 +1,15 @@
 export class SweetService {
-  
   // Initialize with an empty array of sweets and a starting ID
   constructor() {
     this.sweets = [];
     this.nextId = 1000;
   }
-// Get all sweets
+  // Get all sweets
   getAllSweets() {
     return [...this.sweets];
   }
 
-//if sweetData is missing any required fields, throw an error
+  //if sweetData is missing any required fields, throw an error
   addSweet(sweetData) {
     if (
       !sweetData.name ||
@@ -20,7 +19,6 @@ export class SweetService {
     ) {
       throw new Error("Missing required sweet fields");
     }
-//
     const newSweet = {
       id: ++this.nextId,
       ...sweetData,
@@ -30,15 +28,25 @@ export class SweetService {
     return newSweet;
   }
 
-// Update a sweet by ID
   deleteSweet(id) {
     const initialLength = this.sweets.length;
-    this.sweets = this.sweets.filter(sweet => sweet.id !== id);
+    this.sweets = this.sweets.filter((sweet) => sweet.id !== id);
     return this.sweets.length < initialLength;
   }
-
   getSweetById(id) {
-    return this.sweets.find(s => s.id === id);
+    return this.sweets.find((s) => s.id === id);
   }
-  
+
+  //update sweet
+  updateSweet(id, updateData) {
+    const sweetIndex = this.sweets.findIndex((s) => s.id === id);
+    if (sweetIndex === -1) return null;
+
+    this.sweets[sweetIndex] = {
+      ...this.sweets[sweetIndex],
+      ...updateData,
+    };
+
+    return this.sweets[sweetIndex];
+  }
 }
