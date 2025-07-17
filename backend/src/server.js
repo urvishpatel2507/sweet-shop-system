@@ -35,6 +35,19 @@ sweetService.addSweet({
   quantity: 50,
 });
 
+
+//Serach
+app.get("/api/sweets/search", (req, res) => {
+  const { name, category, minPrice, maxPrice } = req.query;
+  const results = sweetService.searchSweets({
+    name,
+    category,
+    minPrice: minPrice ? parseInt(minPrice) : undefined,
+    maxPrice: maxPrice ? parseInt(maxPrice) : undefined,
+  });
+  res.json(results);
+});
+
 // API Endpoints
 app.get("/api/sweets", (req, res) => {
   res.json(sweetService.getAllSweets());
@@ -80,27 +93,6 @@ app.put("/api/sweets/:id", (req, res) => {
   }
 });
 
-//search sweet
-// app.get("/api/sweets/search", (req, res) => {
-//   const { name, category, minPrice, maxPrice } = req.query;
-//   const results = sweetService.searchSweets({
-//     name,
-//     category,
-//     minPrice: minPrice ? parseInt(minPrice) : undefined,
-//     maxPrice: maxPrice ? parseInt(maxPrice) : undefined,
-//   });
-//   res.json(results);
-// });
-app.get("/api/sweets/search", (req, res) => {
-  const { name, category, minPrice, maxPrice } = req.query;
-  const results = sweetService.searchSweets({
-    name,
-    category,
-    minPrice: minPrice ? parseInt(minPrice) : undefined,
-    maxPrice: maxPrice ? parseInt(maxPrice) : undefined,
-  });
-  res.json(results);
-});
 
 //purchase sweet
 app.post("/api/sweets/:id/purchase", (req, res) => {
@@ -140,4 +132,10 @@ app.post("/api/sweets/:id/restock", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+});
+
+app.get("/api/sweets/sorted", (req, res) => {
+  const { sortBy = "price", sortOrder = "asc" } = req.query;
+  const sorted = sweetService.sortSweets(sortBy, sortOrder);
+  res.json(sorted);
 });

@@ -90,16 +90,6 @@ export class SweetService {
     return sweet;
   }
 
-  // NEW: Purchase sweets (reduce quantity)
-  purchaseSweet(id, quantity) {
-    const sweet = this.getSweetById(id);
-    if (!sweet) throw new Error("Sweet not found");
-    if (sweet.quantity < quantity) throw new Error("Insufficient stock");
-
-    sweet.quantity -= quantity;
-    return sweet;
-  }
-
   // NEW: Restock sweets (increase quantity)
   restockSweet(id, quantity) {
     const sweet = this.getSweetById(id);

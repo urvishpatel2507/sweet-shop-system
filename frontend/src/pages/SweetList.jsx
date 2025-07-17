@@ -64,28 +64,25 @@ export const SweetList = () => {
     }
   }
 
-  const handleSearch = async () => {
-    try {
-      setLoading(true)
-      const params = {
-        name: searchTerm,
-        category: categoryFilter
-      }
-      const results = await searchSweets(params)
-      
-      if (!Array.isArray(results)) {
-        throw new Error('Invalid search results format')
-      }
-      
-      setSweets(results)
-    } catch (error) {
-      console.error('Error searching sweets:', error)
-      toast.error('Failed to search sweets')
-      setSweets([])
-    } finally {
-      setLoading(false)
-    }
+ const handleSearch = async () => {
+  try {
+    setLoading(true);
+    const params = {};
+    if (searchTerm) params.name = searchTerm;
+    if (categoryFilter) params.category = categoryFilter;
+
+    const results = await searchSweets(params);
+    if (!Array.isArray(results)) throw new Error("Invalid search results");
+    setSweets(results);
+  } catch (error) {
+    console.error("Error searching sweets:", error);
+    toast.error("Failed to search sweets");
+    setSweets([]);
+  } finally {
+    setLoading(false);
   }
+};
+
 
   const handleClearSearch = async () => {
     setSearchTerm('')
