@@ -6,7 +6,7 @@ export const Navbar = () => {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Sweet Shop Manager
+          Patel Sweet Shop Manager
         </Typography>
         <Box sx={{ display: 'flex', gap: 2 }}>
           <Button color="inherit" component={Link} to="/">
